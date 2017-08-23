@@ -1,0 +1,17 @@
+{
+    "name": "linzhen/code_generate",
+    "description": "",
+    "type": "library",
+    "authors": [
+        {
+            "name": "linzhen",
+            "email": "273487984@qq.com"
+        }
+    ],
+    "require": { },
+    "autoload": {
+        "psr-4": {
+            "generator\\": "./src"
+        }
+    }
+}
