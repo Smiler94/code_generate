@@ -33,13 +33,16 @@ class Method extends Generator
 
     public function addBody($body)
     {
-        $this->body .= $body.PHP_EOL;
+        $this->body .= preg_replace('/(?:^|[\r\n]+)(?=[^\r\n])/', 
+                    '$0' . str_repeat(self::INDENT, $this->indent), 
+                    $body, -1).PHP_EOL;
         return $this;
     }
 
-    public function addParam($name, $value = null)
+    public function addParam($name, $value = null, $is_quote = false)
     {
-        $this->param['$'.$name] = $value;
+        $key = $is_quote ? '&$'.$name : '$'.$name;
+        $this->param[$key] = $value;
         return $this;
     }
 
@@ -50,7 +53,7 @@ class Method extends Generator
                 .($this->is_static ? 'static ' : '')
                 .'function '.$this->name.'('.join(', ', array_keys($this->param)).')'.PHP_EOL
                 .'{'.PHP_EOL
-                .self::INDENT.(rtrim($this->body) ? rtrim($this->body).';' : '').PHP_EOL
+                .(rtrim($this->body) ? rtrim($this->body).';' : '').PHP_EOL
                 .'}'.PHP_EOL;
 
         return parent::generate();
