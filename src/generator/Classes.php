@@ -113,7 +113,7 @@ class Classes extends Generator
         if ($this->traits) {
             $traits = '';
             foreach($this->traits as $val) {
-                $traits .= 'use '.$val.PHP_EOL;
+                $traits .= 'use '.$val.';'.PHP_EOL;
             }
         }
 
@@ -124,7 +124,7 @@ class Classes extends Generator
             $implements = join(',', $this->implements);
         }
         $this->code = $this->comment.'/'.PHP_EOL
-                    .($this->namespace ? 'namespace '.$this->namespace.PHP_EOL : '')
+                    .($this->namespace ? 'namespace '.$this->namespace.';'.PHP_EOL : '')
                     .($this->traits ? $traits : '')
                     .($this->is_abstract ? 'abstract ' : '').'class '.$this->name.' '
                     .($this->extends ? 'extends '.$extends.' ' : '')
