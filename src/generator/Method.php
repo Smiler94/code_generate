@@ -53,7 +53,7 @@ class Method extends Generator
                 .($this->is_static ? 'static ' : '')
                 .'function '.$this->name.'('.join(', ', array_keys($this->param)).')'.PHP_EOL
                 .'{'.PHP_EOL
-                .(rtrim($this->body) ? rtrim($this->body).';' : '').PHP_EOL
+                .(rtrim(rtrim($this->body),';') ? rtrim(rtrim($this->body),';').';' : '').PHP_EOL
                 .'}'.PHP_EOL;
 
         return parent::generate();

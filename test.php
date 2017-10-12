@@ -44,7 +44,7 @@ $method = $class->addMethod('method1')
         ->addComment('@author linzhen 2017-07-04 09:55:57')
         ->setPrivilege('public')
         ->addParam('arg1')
-        ->addBody('return true');
+        ->addBody('return true;');
 
 $method2 = $class->addMethod('method2')
         ->addComment('a test method2')
